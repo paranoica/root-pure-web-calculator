@@ -10,7 +10,7 @@
                 margin: 0;
                 padding: 0;
                 box-sizing: border-box;
-                font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+                font-family: "Segoe UI", Tahoma, Geneva, Verdana, sans-serif;
             }
 
             body {
@@ -261,23 +261,23 @@
         </button>
 
         <script>
-            let currentOperand = '0';
-            let previousOperand = '';
+            let currentOperand = "0";
+            let previousOperand = "";
             let operation = undefined;
             let memory = 0;
             let calculationHistory = [];
             const themes = [
-                { name: 'Default', bg: 'linear-gradient(45deg, #1a1a2e, #16213e)', display: 'rgba(0, 0, 0, 0.3)' },
-                { name: 'Sunset', bg: 'linear-gradient(45deg, #ff6b6b, #ff9e6b)', display: 'rgba(0, 0, 0, 0.2)' },
-                { name: 'Ocean', bg: 'linear-gradient(45deg, #0a3d62, #1e5799)', display: 'rgba(255, 255, 255, 0.1)' },
-                { name: 'Forest', bg: 'linear-gradient(45deg, #2d5a27, #4e9f3d)', display: 'rgba(0, 0, 0, 0.25)' }
+                { name: "Default", bg: "linear-gradient(45deg, #1a1a2e, #16213e)", display: "rgba(0, 0, 0, 0.3)" },
+                { name: "Sunset", bg: "linear-gradient(45deg, #ff6b6b, #ff9e6b)", display: "rgba(0, 0, 0, 0.2)" },
+                { name: "Ocean", bg: "linear-gradient(45deg, #0a3d62, #1e5799)", display: "rgba(255, 255, 255, 0.1)" },
+                { name: "Forest", bg: "linear-gradient(45deg, #2d5a27, #4e9f3d)", display: "rgba(0, 0, 0, 0.25)" }
             ];
             let currentTheme = 0;
 
-            const currentOperandElement = document.querySelector('.current-operand');
-            const previousOperandElement = document.querySelector('.previous-operand');
-            const historyListElement = document.querySelector('.history-list');
-            const historyPanelElement = document.querySelector('.history-panel');
+            const currentOperandElement = document.querySelector(".current-operand");
+            const previousOperandElement = document.querySelector(".previous-operand");
+            const historyListElement = document.querySelector(".history-list");
+            const historyPanelElement = document.querySelector(".history-panel");
 
             function updateDisplay() {
                 currentOperandElement.innerText = currentOperand;
@@ -290,18 +290,18 @@
 
             function getOperationSymbol(op) {
                 switch (op) {
-                    case 'add': return '+';
-                    case 'subtract': return '-';
-                    case 'multiply': return '×';
-                    case 'divide': return '÷';
-                    case 'power': return '^';
-                    default: return '';
+                    case "add": return "+";
+                    case "subtract": return "-";
+                    case "multiply": return "×";
+                    case "divide": return "÷";
+                    case "power": return "^";
+                    default: return "";
                 }
             }
 
             function appendNumber(number) {
-                if (number === '.' && currentOperand.includes('.')) return;
-                if (currentOperand === '0' && number !== '.') {
+                if (number === "." && currentOperand.includes(".")) return;
+                if (currentOperand === "0" && number !== ".") {
                     currentOperand = number;
                 } else {
                     currentOperand = currentOperand.toString() + number.toString();
@@ -309,13 +309,13 @@
             }
 
             function chooseOperation(op) {
-                if (currentOperand === '') return;
-                if (previousOperand !== '') {
+                if (currentOperand === "") return;
+                if (previousOperand !== "") {
                     calculate();
                 }
                 operation = op;
                 previousOperand = currentOperand;
-                currentOperand = '';
+                currentOperand = "";
             }
 
             function calculate() {
@@ -325,19 +325,19 @@
                 if (isNaN(prev) || isNaN(current)) return;
                 
                 switch (operation) {
-                    case 'add':
+                    case "add":
                         computation = prev + current;
                         break;
-                    case 'subtract':
+                    case "subtract":
                         computation = prev - current;
                         break;
-                    case 'multiply':
+                    case "multiply":
                         computation = prev * current;
                         break;
-                    case 'divide':
+                    case "divide":
                         computation = prev / current;
                         break;
-                    case 'power':
+                    case "power":
                         computation = Math.pow(prev, current);
                         break;
                     default:
@@ -348,7 +348,7 @@
                 
                 currentOperand = computation;
                 operation = undefined;
-                previousOperand = '';
+                previousOperand = "";
             }
 
             function addToHistory(calculation) {
@@ -360,25 +360,25 @@
             }
 
             function updateHistoryDisplay() {
-                historyListElement.innerHTML = '';
+                historyListElement.innerHTML = "";
                 calculationHistory.forEach(item => {
-                    const historyItem = document.createElement('div');
-                    historyItem.classList.add('history-item');
+                    const historyItem = document.createElement("div");
+                    historyItem.classList.add("history-item");
                     historyItem.textContent = item;
                     historyListElement.appendChild(historyItem);
                 });
             }
 
             function clear() {
-                currentOperand = '0';
-                previousOperand = '';
+                currentOperand = "0";
+                previousOperand = "";
                 operation = undefined;
             }
 
             function deleteDigit() {
                 currentOperand = currentOperand.toString().slice(0, -1);
-                if (currentOperand === '') {
-                    currentOperand = '0';
+                if (currentOperand === "") {
+                    currentOperand = "0";
                 }
             }
 
@@ -388,23 +388,23 @@
                 
                 let computation;
                 switch (func) {
-                    case 'square':
+                    case "square":
                         computation = Math.pow(current, 2);
                         addToHistory(`sqr(${current}) = ${computation}`);
                         break;
-                    case 'square-root':
+                    case "square-root":
                         computation = Math.sqrt(current);
                         addToHistory(`√(${current}) = ${computation}`);
                         break;
-                    case 'reciprocal':
+                    case "reciprocal":
                         computation = 1 / current;
                         addToHistory(`1/(${current}) = ${computation}`);
                         break;
-                    case 'percent':
+                    case "percent":
                         computation = current / 100;
                         addToHistory(`${current}% = ${computation}`);
                         break;
-                    case 'negate':
+                    case "negate":
                         computation = -current;
                         break;
                     default:
@@ -416,16 +416,16 @@
 
             function executeMemoryFunction(func) {
                 switch (func) {
-                    case 'mc':
+                    case "mc":
                         memory = 0;
                         break;
-                    case 'mr':
+                    case "mr":
                         currentOperand = memory;
                         break;
-                    case 'm-plus':
+                    case "m-plus":
                         memory += parseFloat(currentOperand);
                         break;
-                    case 'm-minus':
+                    case "m-minus":
                         memory -= parseFloat(currentOperand);
                         break;
                     default:
@@ -434,70 +434,70 @@
             }
 
             function toggleHistory() {
-                if (historyPanelElement.style.display === 'block') {
-                    historyPanelElement.style.display = 'none';
+                if (historyPanelElement.style.display === "block") {
+                    historyPanelElement.style.display = "none";
                 } else {
-                    historyPanelElement.style.display = 'block';
+                    historyPanelElement.style.display = "block";
                 }
             }
 
             function changeTheme() {
                 currentTheme = (currentTheme + 1) % themes.length;
                 document.body.style.background = themes[currentTheme].bg;
-                document.querySelector('.display').style.background = themes[currentTheme].display;
+                document.querySelector(".display").style.background = themes[currentTheme].display;
             }
 
-            document.querySelectorAll('[data-number]').forEach(button => {
-                button.addEventListener('click', () => {
-                    appendNumber(button.getAttribute('data-number'));
+            document.querySelectorAll("[data-number]").forEach(button => {
+                button.addEventListener("click", () => {
+                    appendNumber(button.getAttribute("data-number"));
                     updateDisplay();
                 });
             });
 
-            document.querySelectorAll('[data-action]').forEach(button => {
-                button.addEventListener('click', () => {
-                    const action = button.getAttribute('data-action');
+            document.querySelectorAll("[data-action]").forEach(button => {
+                button.addEventListener("click", () => {
+                    const action = button.getAttribute("data-action");
                     
-                    if (action === 'clear') {
+                    if (action === "clear") {
                         clear();
-                    } else if (action === 'delete') {
+                    } else if (action === "delete") {
                         deleteDigit();
-                    } else if (action === 'equals') {
+                    } else if (action === "equals") {
                         calculate();
-                    } else if (['add', 'subtract', 'multiply', 'divide', 'power'].includes(action)) {
+                    } else if (["add", "subtract", "multiply", "divide", "power"].includes(action)) {
                         chooseOperation(action);
-                    } else if (['square', 'square-root', 'reciprocal', 'percent', 'negate'].includes(action)) {
+                    } else if (["square", "square-root", "reciprocal", "percent", "negate"].includes(action)) {
                         executeSpecialFunction(action);
-                    } else if (['mc', 'mr', 'm-plus', 'm-minus'].includes(action)) {
+                    } else if (["mc", "mr", "m-plus", "m-minus"].includes(action)) {
                         executeMemoryFunction(action);
-                    } else if (action === 'decimal') {
-                        appendNumber('.');
+                    } else if (action === "decimal") {
+                        appendNumber(".");
                     }
                     
                     updateDisplay();
                 });
             });
 
-            document.addEventListener('keydown', event => {
+            document.addEventListener("keydown", event => {
                 if (/[0-9]/.test(event.key)) {
                     appendNumber(event.key);
-                } else if (event.key === '.') {
-                    appendNumber('.');
-                } else if (event.key === '+' || event.key === '-') {
-                    chooseOperation(event.key === '+' ? 'add' : 'subtract');
-                } else if (event.key === '*') {
-                    chooseOperation('multiply');
-                } else if (event.key === '/') {
-                    chooseOperation('divide');
-                } else if (event.key === 'Enter' || event.key === '=') {
+                } else if (event.key === ".") {
+                    appendNumber(".");
+                } else if (event.key === "+" || event.key === "-") {
+                    chooseOperation(event.key === "+" ? "add" : "subtract");
+                } else if (event.key === "*") {
+                    chooseOperation("multiply");
+                } else if (event.key === "/") {
+                    chooseOperation("divide");
+                } else if (event.key === "Enter" || event.key === "=") {
                     event.preventDefault();
                     calculate();
-                } else if (event.key === 'Backspace') {
+                } else if (event.key === "Backspace") {
                     deleteDigit();
-                } else if (event.key === 'Escape') {
+                } else if (event.key === "Escape") {
                     clear();
-                } else if (event.key === '%') {
-                    executeSpecialFunction('percent');
+                } else if (event.key === "%") {
+                    executeSpecialFunction("percent");
                 }
                 updateDisplay();
             });
